@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+  </head>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  
+    <div id="g_id_onload"
+     data-client_id="614610442680-mmot2uo15l8vfie0i0g6slq5990b7rv7.apps.googleusercontent.com"
+     data-context="signup"
+     data-ux_mode="popup"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false">
+    </div>
+
+    <div class="g_id_signin"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="$ {button.text}"
+        data-size="medium"
+        data-logo_alignment="left">
+    </div>
+
+
+    <script>
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: '614610442680-mmot2uo15l8vfie0i0g6slq5990b7rv7.apps.googleusercontent.com',
+          callback: handleCredentialResponse,
+          ux_mode: "redirect"
+        });
+        google.accounts.id.prompt();
+      };
+
+      function handleCredentialResponse(response){
+
+        
+
+        const responsePayload = decodeJwtResponse(response.credential)
+
+        console.log("ID: " + responsePayload.sub);
+        console.log('Full Name: ' + responsePayload.name);
+        console.log('Given Name: ' + responsePayload.given_name);
+        console.log('Family Name: ' + responsePayload.family_name);
+        console.log("Image URL: " + responsePayload.picture);
+        console.log("Email: " + responsePayload.email);
+
+        //window.location.href=`https://controledegastos.com/loginGoogle?fullName=${responsePayload.name}&givenName=${responsePayload.given_name}&familyName=${responsePayload.family_name}&image=${responsePayload.picture}&email=${responsePayload.email}`
+      }
+
+      function decodeJwtResponse (token) {
+        let base64Url = token.split('.')[1];
+        let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+      }
+    </script>
+  </body>
+</html>

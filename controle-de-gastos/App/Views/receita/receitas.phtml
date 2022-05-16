@@ -1,0 +1,547 @@
+<?php
+    if(!(isset($_SESSION['logged']) && $_SESSION['logged'] === 'LOGGED')){
+        header('Location: /?session=timeOut');
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css-bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./fontawesome/css/all.min.css">
+        <link rel="shortcut icon" href="./img/coins-solid.svg" type="image/x-icon">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/css-sidebar.css">
+        <link rel="stylesheet" href="./css/css-cards.css">
+        <link rel="stylesheet" href="./css/css-menu.css">
+        <link rel="stylesheet" href="./css/css-checkbox.css">
+        <link rel="stylesheet" href="./css/modal.css">
+        <link rel="stylesheet" href="./css/receita.css">
+        <link rel="stylesheet" href="./css/despesa.css">
+        <link rel="stylesheet" href="./css/seletores.css">
+        <link rel="stylesheet" href="./css/mes.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500&display=swap" rel="stylesheet"> 
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <!-- modal despesa-->
+        <div id="modal" class="modal d-none">
+            <div class="modal-body">
+                <div class="modal-content modal-despesa">
+                    <div class="mh">
+                        <h4>Nova Despesa</h4>
+                        <span class="close fa-regular fa-x" onclick="fechar('modal')"></span>
+                    </div>
+                    <form action="/novaDespesa">
+                        <!-- valor -->
+                        <div class="input-group">
+                            <i class="fa-solid fa-calculator"></i>
+                            <input type="text" name="valor" id="valor" class="form-control despesa-valor" placeholder="R$">
+                        </div>
+
+                        <!-- despesa paga -->
+                        <div>
+                            <div class="row d-flex">
+                                <div class="col-6 align-self-end">
+                                    <i class="fa-regular fa-circle-check check-icon"></i>
+                                    <label id="text-switch" for="switch" class="text-switch">Foi Paga</label>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end">
+                                    <input type="checkbox" id="switch" class="checkbox" value="pago" name="isPaid" checked=true>                        
+                                    <label for="switch" class="toggle"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- data -->
+                        <div class="mt-4 input-group">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <input id="dt" type="date" name="data" class="form-control"> 
+                        </div>
+
+                        <!-- beneficiario -->
+                        <div class="mt-4 input-group">
+                            <i class="fa-solid fa-receipt"></i>
+                            <input type="text" name="bene" id="bene" class="form-control" placeholder="Beneficiário">
+                        </div>
+
+                        <!-- categoria -->
+                        <div class="select-categoria mt-4">
+                
+                            <div class="container-box">
+
+                                <div id="categoria" class="container-options">
+
+                                    <div class="option waD">
+                                        <input type="radio" name="categoria" class="radio" id="compra-mercadoria" value="compra-mercadoria">
+                                        <label for="compra-mercadoria">Compra de Mercadoria</label>
+                                    </div>
+
+                                    <div class="option waD">
+                                        <input type="radio" name="categoria" class="radio" id="conta" value="conta">
+                                        <label for="conta">Contas</label>
+                                    </div>
+
+                                    <div class="option waD">
+                                        <input type="radio" name="categoria" class="radio" id="imposto" value="imposto">
+                                        <label for="imposto">Impostos</label>
+                                    </div>
+
+                                    <div class="option waD">
+                                        <input type="radio" name="categoria" class="radio" id="alimentacao" value="alimentacao">
+                                        <label for="alimentacao">Alimentação</label>
+                                    </div>
+
+                                    <div class="option waD">
+                                        <input type="radio" name="categoria" class="radio" id="transporte" value="transporte">
+                                        <label for="transporte">Transporte</label>
+                                    </div>                                
+                                </div> 
+                                <div id="categoria-select" class="selected-option ">
+                                    <i class="fa-solid fa-flag"></i>
+                                    <span id="cat-text">Categorias</span>
+                                </div>
+                            </div>  
+                        </div>
+                        
+                        <!-- carteira -->
+                        <div class="div-carteira mt-4">
+                            <div class="container-box">
+                                <div id="carteira" class="container-options" >
+                                    <div class="option wd">
+                                        <input type="radio" name="carteira" id="empresa" class="radio" value="empresa">
+                                        <label for="empresa">Empresa</label>
+                                    </div>
+
+                                    <div class="option wd">
+                                        <input type="radio" name="carteira" id="pessoal" class="radio" value="pessoal">
+                                        <label for="pessoal">Pessoal</label>
+                                    </div>
+                                </div>
+
+                                <div id="wdSelector" class="selected-option">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                    <span id="wdText">Carteira</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- botão submit -->
+                        <div class="submit mt-4">
+                            <button type="submit">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal receitas -->
+        <div id="modal-receita" class="modal d-none">
+            <div class="modal-body">
+                <div class="modal-content modal-receita">
+                    <div class="mh">
+                        <h4 class="d-inline">Nova Receita</h4>
+                        <span id="fechar" class="close fa-regular fa-x" onclick="fechar('modal-receita')"></span>
+                    </div>
+
+                    <form action="/novaReceita">
+                        <!-- valor -->
+                        <div class="input-group">
+                            <i class="fa-solid fa-calculator"></i>
+                            <input type="text" name="valor" id="valor-receita" class="form-control" placeholder="R$">
+                        </div>
+
+                        <!-- rent paga -->
+                        <div>
+                            <div class="row d-flex receita-check">
+                                <div class="col-6 align-self-end">
+                                    <i class="fa-regular fa-circle-check check-icon"></i>
+                                    <label id="text-switch-receita" for="switch-receita" class="text-switch">Liquidado</label>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end">
+                                    <input type="checkbox" id="switch-receita" class="checkbox" value="liquidado" name="isPaid" checked=true>
+                                    <label for="switch-receita" class="toggle"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- data -->
+                        <div class="mt-4 input-group">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <input id="dt-receita" type="date" name="data" class="form-control">
+                        </div>
+
+                        <!-- pagador -->
+                        <div class="mt-4 input-group">
+                            <i class="fa-solid fa-receipt"></i>
+                            <input type="text" name="payer" id="pagador-receita" class="form-control" placeholder="Pagador">
+                        </div>
+
+                        <!-- categoria -->
+                        <div class="select-categoria-receita mt-4">
+
+                            <div class="container-box">
+
+                                <div id="categoria-receita" class="container-options">
+
+                                    <div class="option r">
+                                        <input type="radio" name="categoria" class="radio" id="venda-mercadoria" value="venda-mercadoria">
+                                        <label for="venda-mercadoria">Venda de Mercadoria</label>
+                                    </div>
+
+                                    <div class="option r">
+                                        <input type="radio" name="categoria" class="radio" id="servico" value="serviço">
+                                        <label for="servico">Serviço</label>
+                                    </div>
+
+                                    <div class="option r">
+                                        <input type="radio" name="categoria" class="radio" id="matriz" value="matriz">
+                                        <label for="matriz">Matriz</label>
+                                    </div>
+                                </div>
+                                <div id="cat-selector-receita" class="selected-option">
+                                    <i class="fa-solid fa-flag"></i>
+                                    <span id="text-receita">Categorias</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- carteira -->
+                        <div class="div-carteira-receita mt-4">
+                            <div class="container-box">
+                                <div id="carteira-receita" class="container-options">
+                                    <div class="option w">
+                                        <input type="radio" name="carteira-receita" id="empresa-receita" class="radio" value="empresa">
+                                        <label for="empresa-receita">Empresa</label>
+                                    </div>
+
+                                    <div class="option w">
+                                        <input type="radio" name="carteira-receita" id="pessoal-receita" class="radio" value="pessoal">
+                                        <label for="pessoal-receita">Pessoal</label>
+                                    </div>
+                                </div>
+
+                                <div id="wallet-selector-receita" class="selected-option">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                    <span id="wallet-text">Carteira</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- botão submit -->
+                        <div class="submit receita mt-4">
+                            <button type="submit">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal expense edit-->
+        <div id="modal-edit-receita" class="modal d-none">
+            <div class="modal-body">
+                <div class="modal-content modal-receita">
+                    <div class="mh">
+                        <h4 class="d-inline">Nova Receita</h4>
+                        <span id="fechar-edit" class="close fa-regular fa-x" onclick="fechar('modal-edit-receita')"></span>
+                    </div>
+
+                    <form action="/novaReceita">
+                        <!-- valor -->
+                        <div class="input-group">
+                            <i class="fa-solid fa-calculator"></i>
+                            <input type="text" name="valor" id="valor-receita-edit" class="form-control" placeholder="R$">
+                        </div>
+
+                        <!-- rent paga -->
+                        <div>
+                            <div class="row d-flex receita-check">
+                                <div class="col-6 align-self-end">
+                                    <i class="fa-regular fa-circle-check check-icon"></i>
+                                    <label id="text-switch-receita-edit" for="switch-receita-edit" class="text-switch">Liquidado</label>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end">
+                                    <input type="checkbox" id="switch-receita-edit" class="checkbox" value="liquidado" name="isPaid" checked=true>
+                                    <label for="switch-receita-edit" class="toggle" id="toggle-rent"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- data -->
+                        <div class="mt-4 input-group">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <input id="dt-receita-edit" type="date" name="data" class="form-control">
+                        </div>
+
+                        <!-- pagador -->
+                        <div class="mt-4 input-group">
+                            <i class="fa-solid fa-receipt"></i>
+                            <input type="text" name="payer" id="pagador-receita-edit" class="form-control" placeholder="Pagador">
+                        </div>
+
+                        <!-- categoria -->
+                        <div class="select-categoria-receita mt-4">
+
+                            <div class="container-box">
+
+                                <div id="categoria-receita-edit" class="container-options cat-edit">
+
+                                    <div class="option rent">
+                                        <input type="radio" name="categoria" class="radio" id="venda-mercadoria-edit" value="venda-mercadoria">
+                                        <label for="venda-mercadoria">Venda de Mercadoria</label>
+                                    </div>
+
+                                    <div class="option rent">
+                                        <input type="radio" name="categoria" class="radio" id="servico-edit" value="serviço">
+                                        <label for="servico">Serviço</label>
+                                    </div>
+
+                                    <div class="option rent">
+                                        <input type="radio" name="categoria" class="radio" id="matriz-edit" value="matriz">
+                                        <label for="matriz">Matriz</label>
+                                    </div>
+                                </div>
+                                <div id="cat-selector-receita-edit" class="selected-option">
+                                    <i class="fa-solid fa-flag"></i>
+                                    <span id="text-receita-edit">Categorias</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- carteira -->
+                        <div class="div-carteira-receita mt-4">
+                            <div class="container-box">
+                                <div id="carteira-receita-edit" class="container-options edit-wallet">
+                                    <div class="option wallet">
+                                        <input type="radio" name="carteira-receita" id="empresa-receita-edit" class="radio" value="empresa">
+                                        <label for="empresa-receita">Empresa</label>
+                                    </div>
+
+                                    <div class="option wallet">
+                                        <input type="radio" name="carteira-receita" id="pessoal-receita-edit" class="radio" value="pessoal">
+                                        <label for="pessoal-receita">Pessoal</label>
+                                    </div>
+                                </div>
+
+                                <div id="wallet-selector-receita-edit" class="selected-option">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                    <span id="wallet-text-edit">Carteira</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- botão submit -->
+                        <div class="submit receita mt-4">
+                            <button type="button" id="send-edit-rent">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- barra lateral -->
+        <div id="sidebar">
+            <div class="sibebar-logo">
+                <a href="/"><img src="./img/img.png" width="80" alt=""></a>
+            </div>
+
+            <div class="sidebar-btn-add">
+                <div id="btn-add">
+                    <button id="btn" class="btn-sidebar green">
+                        <i id="btn-icon" class="fa-solid fa-plus"></i>
+                    </button>
+
+                    <ul id="menu" class="d-none">
+                        <li>
+                            <a onclick="modal('modal')" class="cl">
+                                <i class="fa-solid fa-arrow-trend-down dp"></i>
+                                Despesa
+                            </a>
+                        </li>
+                        <li>
+                            <a onclick="modal('modal-receita')" class="cl">
+                                <i class="fa-solid fa-arrow-trend-up rt"></i>
+                                Receita
+                            </a>
+                        </li>
+                        <li><a href="">
+                            <i class="fa-solid fa-bag-shopping vd"></i>
+                            Venda
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="margin-t">
+                        <a href="/"><img src="./img/home.png" width="35" alt=""></a>
+                    </li>
+                    <li class="margin-t active rent">
+                        <a href="#"><img src="./img/lista.png" width="33" alt=""></i></a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <!-- conteudo principal -->
+        <div id="content" class="content">
+
+            <div class="topo">
+                <div id="usuario">
+                    <span class="user"><img class="user-image" src="<?= isset($_SESSION['image']) ? $_SESSION['image'] : '' ?>" alt=""></span>
+                    <span class="user-name"><?= isset($_SESSION['user']) ? $_SESSION['user'] : '' ?></span>
+                    <span class="angle"><i class="fa-solid fa-angle-down"></i></span>
+                </div>
+            </div>
+
+            <!-- linha de opções -->
+            <div class="interaction">
+                <div onclick="show('drop')" class="left-btn receita">
+                    <span class="btn-icon"><i class="fa-solid fa-angle-down"></i></span>
+                    <span>Receitas</span>
+                </div>
+                <div id="drop" class="drop-menu d-none">
+                    <div class="drop-content">
+                        <ul>
+                            <li class="mt-2">
+                                <a href="/despesa">
+                                    <i class="fa-solid fa-circle text-red"></i>
+                                    Despesas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/receitas">
+                                    <i class="fa-solid fa-circle text-green"></i>
+                                    Receitas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa-solid fa-circle text-vendas"></i>
+                                    Vendas
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="options-right">
+                    <div class="rent" onclick="modal('modal-receita')">
+                        <span class="icon"><i class="fa-solid fa-plus"></i></span>
+                        <span>nova receita</span>
+                    </div>
+                    <div class="search">
+                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
+                    <div class="filter">
+                        <span><i class="fa-solid fa-filter"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- cartoes de valores -->
+            <div class="linha">
+                <div class="cartao desepesas">
+                    <span class="text-card">Receitas Pendentes<img src="./img/angle.png" width="25" alt=""></span>
+                    <div class="icone-circle green">
+                        <span class="icone saldo"><i class="fa-solid fa-arrow-up"></i></span>
+                    </div>
+                    <h4>R$ <?= empty($this->view->rentNp['noPaid']) ? '0,00' : str_replace('.', ',', $this->view->rentNp['noPaid']) ?></h4>
+                </div>
+
+                <div class="cartao desepesas">
+                    <span class="text-card">Receitas Recebidas<img src="./img/angle.png" width="25" alt=""></span>
+                    <div class="icone-circle green">
+                        <span class="icone saldo"><i class="fa-solid fa-arrow-down"></i></span>
+                    </div>
+                    <h4>R$ <?= empty($this->view->rentPaid['paid']) ? '0,00' : str_replace('.', ',', $this->view->rentPaid['paid']) ?></h4>
+                </div>
+
+                <div class="cartao desepesas">
+                    <span class="text-card">Total<img src="./img/angle.png" width="25" alt=""></span>
+                    <div class="icone-circle green c-saldo">
+                        <span class="icone saldo"><i class="fa-solid fa-scale-balanced balence"></i></span>
+                    </div>
+                    <h4>R$ <?= empty($this->view->totalRent['total']) ? '0,00' : str_replace('.', ',', $this->view->totalRent['total']) ?></h4>
+                </div>
+            </div>
+
+
+            <!-- tabela -->
+            <div class="card-lg tabela">
+                <table>
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col">Situação</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Beneficiário</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Conta</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php foreach($this->view->dados as $key => $rent){ ?>
+                            <tr id="expense_<?= $rent['id'] ?>">
+                                <td>
+                                    <?php if($rent['isPaid'] == 'liquidado'){ ?>
+                                        <span style="background-color: #4CAF50;" class="status"><i class="fa-solid fa-check paid"></i></span>
+                                    <?php }else if($rent['isPaid'] == 'pendente'){ ?>
+                                        <span class="status"><i class="fa-solid fa-exclamation np"></i></span>
+                                    <?php } ?>
+
+                                </td>
+                                <td><?= substr($rent['date_rent'], 8) . '/' . substr($rent['date_rent'], 5, 2) . '/' . substr($rent['date_rent'], 0,4) ?></td>
+                                <td><?= $rent['payer'] ?></td>
+                                <td><?=$rent['category']?></td>
+                                <td><?=$rent['wallet']?></td>
+                                <td class="fw-light text-success"><?='R$ ' . str_replace('.', ',', $rent['value_rent'])?></td>
+                                <td>
+                                    <div class="table-box">
+                                        <?php if($rent['isPaid'] == 'pendente'){ ?>
+                                            <span onclick="recive(<?= $rent['id'] ?>)" class="action pe-3"><abbr title="Pagar"><i class="fa-regular fa-circle-check"></i></abbr></span>
+                                        <?php } ?>
+                                        <span onclick="editRent(<?= $rent['id'] ?>)" class="action pe-3"><abbr title="Editar"><i class="fa-solid fa-pencil"></i></abbr></span>
+                                        <span onclick="excludeRent(<?= $rent['id'] ?>)" class="action"><abbr title="Excluir"><i class="fa-solid fa-trash-can"></i></abbr></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="./js-bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="./js/main.js"></script>
+        <script src="./js/despesa.js"></script>
+        <script src="./js/receita.js"></script>
+        <script src="./js/edit-rent.js"></script>
+        <script src="./js/interaction-table.js"></script>
+        <script>
+
+            function show(id){
+                document.getElementById(id).classList.toggle('d-none')
+            }
+        </script>
+    </body>
+</html>

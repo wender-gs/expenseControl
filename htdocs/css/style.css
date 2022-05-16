@@ -1,0 +1,443 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #EDF3FB;
+  font-family: "Maven Pro", sans-serif;
+  height: 100%;
+}
+
+body {
+  padding-right: 10px;
+}
+
+/*contentudo*/
+h3 {
+  font-family: "Maven Pro", sans-serif;
+  font-size: 32px;
+  margin-left: 8px;
+  font-weight: 500;
+  line-height: 40px;
+  color: #000000;
+}
+
+h5 {
+  margin-left: 8px;
+  color: #6D7073;
+}
+
+/* conteudo */
+.content {
+  margin-left: 108px;
+}
+
+/* usuarios */
+#usuario {
+  width: 200px;
+  height: 52px;
+  border-radius: 25px;
+  padding-left: 8px;
+  line-height: 52px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+#usuario:hover {
+  background-color: #E4EAF1;
+  transition: all 0.5s;
+}
+#usuario .user {
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  float: left;
+  width: 45px;
+  height: 45px;
+  border-radius: 22.5px;
+}
+#usuario .user-icon {
+  position: relative;
+  top: -4px;
+  left: 15px;
+  color: #fff;
+}
+#usuario .user-name {
+  font-weight: bold;
+  float: left;
+  margin-left: 20px;
+}
+#usuario .angle {
+  position: relative;
+  right: -20px;
+}
+
+#seletor-categoria {
+  position: absolute;
+  top: -65px;
+  left: -15px;
+}
+#seletor-categoria .cartao {
+  width: auto;
+  position: absolute;
+  z-index: 1005;
+  overflow: hidden;
+  padding: 0;
+  height: auto;
+  padding: 10px 0 0 0;
+}
+#seletor-categoria .cartao ul {
+  list-style: none;
+  padding: 0;
+  width: 538px;
+}
+#seletor-categoria .cartao ul li {
+  line-height: 30px;
+  padding: 5px 10px;
+}
+#seletor-categoria .cartao ul li:hover {
+  background-color: #F1F1F1;
+}
+#seletor-categoria .cartao ul li span {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: rgb(0, 153, 204);
+  margin-right: 15px;
+}
+#seletor-categoria .cartao ul li i {
+  text-align: center;
+  margin-right: 20px;
+  position: relative;
+  top: -1px;
+  left: 7px;
+  font-size: 14px;
+  color: white;
+}
+
+.submit {
+  display: flex;
+  justify-content: right;
+}
+
+.submit button {
+  background-color: #F44336;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 10px;
+  width: 100px;
+  color: #fff;
+}
+
+.submit.receita button {
+  background-color: #4CAF50;
+}
+
+.topo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80px;
+}
+
+.status {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: red;
+  color: #FFF;
+  position: relative;
+  left: 18px;
+}
+.status i.paid {
+  position: relative;
+  left: 8px;
+  top: 4px;
+}
+.status i.np {
+  position: relative;
+  left: 12.5px;
+  top: 3px;
+}
+
+.action {
+  font-size: 13px !important;
+  color: #6D7073;
+  text-align: right;
+}
+.action i {
+  cursor: pointer;
+}
+
+.table-box {
+  display: flex;
+  justify-content: right;
+  width: 75%;
+}
+
+.expense-success, .expense-error {
+  display: flex;
+  position: absolute;
+  z-index: 1005;
+  right: 20px;
+  top: 20px;
+  border-radius: 15px;
+  color: #fff;
+  padding: 15px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.expense-success {
+  background-color: #00BFA5;
+}
+
+.expense-error {
+  background-color: rgb(245, 41, 41);
+}
+
+.expense-content {
+  line-height: 20px;
+  overflow-y: hidden;
+}
+.expense-content i {
+  font-size: 16px;
+}
+
+.interaction {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 50px;
+  padding: 0 5px 0 9px;
+}
+.interaction .left-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #F44336;
+  color: #fff;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+.interaction .left-btn:hover {
+  background-color: #9A0007;
+}
+.interaction .left-btn .btn-icon {
+  padding-right: 25px;
+}
+.interaction .options-right {
+  display: flex;
+  margin-left: auto;
+}
+.interaction .options-right .new-expense, .interaction .options-right .rent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px;
+  margin-right: 13px;
+  width: auto;
+  height: 45px;
+  border-radius: 25px;
+  background-color: #FFFFFF;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  color: #D32F4A;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+.interaction .options-right .new-expense .icon, .interaction .options-right .rent .icon {
+  padding-right: 10px;
+  font-size: 1.1em;
+}
+.interaction .options-right .search, .interaction .options-right .filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  background-color: #FFF;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  color: #6D7073;
+  cursor: pointer;
+}
+.interaction .options-right .search:hover, .interaction .options-right .filter:hover {
+  background-color: #E4E9F1;
+}
+.interaction .options-right .filter {
+  margin-left: 13px;
+}
+.interaction .options-right .rent {
+  color: #4CAF50;
+}
+
+.left-btn.receita {
+  background-color: #4CAF50;
+}
+.left-btn.receita:hover {
+  background-color: #00600F;
+}
+
+.margin-t.active.rent {
+  border-left: 2px solid #4CAF50;
+}
+
+.drop-menu {
+  position: fixed;
+  top: 160px;
+  width: 180px;
+  height: auto !important;
+  border-radius: 25px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  background-color: #FFF;
+}
+
+.drop-content {
+  width: 100%;
+}
+
+.drop-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.drop-content ul li {
+  padding: 10px;
+  width: 100%;
+}
+
+.drop-content ul li:hover {
+  background-color: #f5f5f5;
+}
+
+.drop-content ul li a {
+  text-decoration: none;
+  display: block;
+  color: rgb(46, 42, 42);
+}
+
+.drop-content ul li a i {
+  font-size: 13px;
+  padding-right: 5px;
+}
+
+.drop-content ul li a i.text-green {
+  color: #4caf50;
+}
+
+.drop-content ul li a i.text-red {
+  color: #f44336;
+}
+
+.drop-content ul li a i.text-vendas {
+  color: #00796B;
+}
+
+.green {
+  background-color: #4CAF50;
+}
+
+.red {
+  background-color: #F44336;
+}
+
+.div-chart {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.chart {
+  width: 25px;
+  margin-right: 10px;
+}
+
+.chart-icon {
+  border-radius: 25px;
+  transition: width 0.9s;
+}
+
+.w-receita {
+  max-height: 130px;
+  color: transparent;
+}
+
+.w-despesa {
+  max-height: 130px;
+  color: transparent;
+}
+
+#wallet-text-edit, #text-receita-edit,
+#text-switch-receita-edit {
+  text-transform: capitalize;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.box-index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.box-content {
+  background-color: #FFF;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.5);
+}
+
+.box-body input {
+  border: none;
+  border-bottom: 1.3px solid #b5b5b5;
+  border-radius: 0;
+  width: 350px;
+}
+
+.box-body input:focus {
+  box-shadow: none;
+}
+
+.box-body label {
+  font-size: 13px;
+}
+
+.btn-login {
+  border: none;
+  width: 100%;
+  margin-top: 20px;
+  line-height: 40px;
+  border-radius: 20px;
+  background-color: #FF191B;
+  color: #fff;
+  text-transform: uppercase;
+}
+.btn-login:hover {
+  background-color: #ff515c;
+  transition: all 0.5s;
+}
+
+.user-image {
+  border-radius: 50%;
+  width: 45px;
+}
+
+/*# sourceMappingURL=style.css.map */

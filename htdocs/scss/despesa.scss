@@ -1,0 +1,15 @@
+#modal .container-box .selected-option{
+    &:hover{
+        border-bottom: 1px solid orangered;
+    }
+}
+
+#carteira-receita{
+    position: absolute;
+    top: 320px;
+}
+
+#carteira{
+    position: absolute;
+    top: 320px;
+}

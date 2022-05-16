@@ -1,0 +1,69 @@
+.toggle {
+    margin-top: 30px;
+    position : relative ;
+    display : inline-block;
+    width : 40px;
+    height : 15px;
+    background-color: #9d9d9d;
+    border-radius: 25px;
+    text-align: right;
+    // float: right;
+}
+
+/* After slide changes */
+.toggle::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: -2.5px; 
+    left: -1px;
+    transition:  all 0.5s;
+    box-shadow: .5px .5px 3px rgba(0,0,0, .5);
+}
+
+/* Checkbox checked effect */
+.checkbox:checked + .toggle::after {
+    left : 23px;
+    transition: all .5s;
+}
+        
+/* Checkbox checked toggle label bg color */
+.checkbox:checked + .toggle {
+    background-color: #e89292;
+}
+
+.checkbox:checked + .toggle::after{
+    background-color: #d32f2f;
+}
+
+.receita .checkbox:checked + .toggle {
+    background-color: #68db6c;
+}
+
+.receita-check .checkbox:checked + .toggle{
+    background-color: #91e594;
+}
+
+.receita-check .checkbox:checked + .toggle::after{
+    background-color: #4CAF50;
+}
+        
+/* Checkbox vanished */
+.checkbox { 
+    display : none;
+}
+
+.text-switch {
+    display: block;
+    padding-left: 25px;
+    color: #b5b5b5;
+    font-size: 16px;
+}
+
+.check-icon{
+    position: relative !important;
+    top: 25px !important;
+}
