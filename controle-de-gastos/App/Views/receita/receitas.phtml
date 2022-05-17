@@ -395,10 +395,18 @@
         <div id="content" class="content">
 
             <div class="topo">
-                <div id="usuario">
+                <div id="usuario" class="user">
                     <span class="user"><img class="user-image" src="<?= isset($_SESSION['image']) ? $_SESSION['image'] : '' ?>" alt=""></span>
                     <span class="user-name"><?= isset($_SESSION['user']) ? $_SESSION['user'] : '' ?></span>
                     <span class="angle"><i class="fa-solid fa-angle-down"></i></span>
+                </div>
+
+                <div id="drop-user" class="menu-user">
+                    <ul>
+                        <li><a href=""><i class="fa-regular fa-circle-user"></i>Meu Perfil</a></li>
+                        <li><a href=""><i class="fa-solid fa-gear"></i>Configurações</a></li>
+                        <li><a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i>Sair</a></li>
+                    </ul>
                 </div>
             </div>
 

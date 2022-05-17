@@ -495,10 +495,13 @@ h5{
 
 .menu-user{
     display: none;
+    overflow-x: hidden;
+    width: 200px;
+    padding: 5px 0;
 
     position: absolute;
     top: 75px;
-    right: 65px;
+    right: 10px;
 
     background-color: #FFF;
     border-radius: 15px;
@@ -510,13 +513,24 @@ h5{
         list-style: none;
 
         li{
-            padding: 10px;
+            line-height: 15px;
+            &:hover{
+                background-color: #F5F5F5;
+            }
         }
 
         li a{
+            display: block;
             text-decoration: none;
+            padding: 10px;
+            color: #6D7073;
+
+            i{
+                padding-right: 10px;
+            }
         }
     }
+
 }
 
 .active-drop{

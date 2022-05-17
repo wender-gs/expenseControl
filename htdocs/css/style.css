@@ -443,9 +443,12 @@ h5 {
 
 .menu-user {
   display: none;
+  overflow-x: hidden;
+  width: 200px;
+  padding: 5px 0;
   position: absolute;
   top: 75px;
-  right: 65px;
+  right: 10px;
   background-color: #FFF;
   border-radius: 15px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3), -1px -1px 3px rgba(0, 0, 0, 0.3);
@@ -456,10 +459,19 @@ h5 {
   list-style: none;
 }
 .menu-user ul li {
-  padding: 10px;
+  line-height: 15px;
+}
+.menu-user ul li:hover {
+  background-color: #F5F5F5;
 }
 .menu-user ul li a {
+  display: block;
   text-decoration: none;
+  padding: 10px;
+  color: #6D7073;
+}
+.menu-user ul li a i {
+  padding-right: 10px;
 }
 
 .active-drop {
