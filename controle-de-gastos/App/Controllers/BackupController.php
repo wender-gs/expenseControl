@@ -1,7 +1,6 @@
 <?php
     namespace App\Controllers;
     use CG\Controller\Action;
-use Error;
 
     class BackupController extends Action {
 

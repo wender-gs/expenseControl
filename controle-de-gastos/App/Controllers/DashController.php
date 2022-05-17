@@ -10,9 +10,7 @@
     public function dashboard(){
 
       $totals = Container::getModel('Dashboard');
-
       $fk_id = $_SESSION['id'];
-
       $this->view->totalRent = $totals->sumRent($fk_id);
       $this->view->totalExpenses = $totals->sumExpenses($fk_id);
       $this->render('dashboard');
