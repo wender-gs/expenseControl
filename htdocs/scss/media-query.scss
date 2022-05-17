@@ -1,0 +1,81 @@
+body{
+    min-width: 416px;
+}
+
+@media (max-width: 740px){
+
+    body{
+        padding: 0;
+    }
+
+    .topo{
+        padding-left: 20px;
+        margin-top: 10px;
+        display: none;
+    }
+
+    #sidebar{
+        margin: 5px;
+        padding: 10px;
+        position: relative;
+        display: flex;
+        display: block;
+        width: auto;
+        height: auto;
+        border-radius: 15px;
+    }
+
+    #usuario{
+        float: right;
+    }
+
+    .sidebar-btn-add, .sidebar-menu{
+        display: none;
+    }
+
+    .content{
+        margin-left: auto;
+    }
+
+    .sibebar-logo{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        margin-top: 0px;
+    }
+
+    .navbar-menu{
+        display: block;
+        list-style: none;
+        padding: 0;
+        margin-left: auto;
+        margin-top: 15px;
+        display: block !important;
+
+        li{
+            display: inline;
+            padding: 5px 10px 0 5px;
+        }
+
+        li a{
+            text-decoration: none;
+            font-weight: bold;
+            color: red;
+
+            &:hover{
+                color: rgb(189, 7, 7);
+            }
+        }
+    }
+
+    .card-lg.balance{
+        width: 97.7%;
+    }
+}
+
+@media (min-width: 741px) and (max-width: 1032px){
+    .card-lg.balance{
+        width: 97.7%;
+    }
+}
