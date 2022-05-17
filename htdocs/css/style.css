@@ -441,4 +441,29 @@ h5 {
   width: 45px;
 }
 
+.menu-user {
+  display: none;
+  position: absolute;
+  top: 75px;
+  right: 65px;
+  background-color: #FFF;
+  border-radius: 15px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3), -1px -1px 3px rgba(0, 0, 0, 0.3);
+}
+.menu-user ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.menu-user ul li {
+  padding: 10px;
+}
+.menu-user ul li a {
+  text-decoration: none;
+}
+
+.active-drop {
+  display: block;
+}
+
 /*# sourceMappingURL=style.css.map */

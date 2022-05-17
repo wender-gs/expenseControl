@@ -267,11 +267,11 @@
         <div id="sidebar">
             <div class="sibebar-logo">
                 <img src="./img/img.png" width="80" alt="">
-                <ul class="navbar-menu d-none">
+                <!-- <ul class="navbar-menu d-none">
                     <li><a href="">Dashboard</a></li>
                     <li><a href="">Novo</a></li>
                     <li><a href="">Transações</a></li>
-                </ul>
+                </ul> -->
             </div>
 
             <div class="sidebar-btn-add">
@@ -320,8 +320,6 @@
         <!-- conteudo principal -->
         <div id="content" class="content">
 
-        
-
             <!-- pop-up success_Error -->
             <?php if(isset($_REQUEST['register']) && $_REQUEST['register'] == 'despesaRegisterSuccess' || isset($_REQUEST['register']) && $_REQUEST['register'] == 'receitaRegisterSuccess'){ ?>
                 <div id="register" class="expense-success">
@@ -339,9 +337,10 @@
                 </div>
             <?php } ?>
 
+            <!-- line of top -->
             <div>
                 <div class="topo">
-                    <div style="align-self: center;">
+                    <div style="align-self: center;" class="mes">
                         <div class="select-content">
                             <div class="select-box">
 
@@ -415,10 +414,17 @@
                         </div>
                     </div>
 
-                    <div id="usuario">
+                    <div id="usuario" class="user">
                         <span class="user"><img class="user-image" src="<?= isset($_SESSION['image']) ? $_SESSION['image'] : ''?>" alt=""></i></span>
                         <span class="user-name"><?= isset($_SESSION['user']) ? $_SESSION['user'] : '' ?></span>
                         <span class="angle"><i class="fa-solid fa-angle-down"></i></span>
+                    </div>
+
+                    <div id="drop-user" class="menu-user">
+                        <ul>
+                            <li><a href="">Configurações</a></li>
+                            <li><a href="">Sair</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -8,14 +8,17 @@ body {
   }
 
   .topo {
-    padding-left: 20px;
-    margin-top: 10px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mes {
     display: none;
   }
 
   #sidebar {
     margin: 5px;
-    padding: 10px;
+    padding: 20px 10px 20px 10px;
     position: relative;
     display: flex;
     display: block;
@@ -26,6 +29,9 @@ body {
 
   #usuario {
     float: right;
+    position: absolute;
+    top: 16px;
+    right: 15px;
   }
 
   .sidebar-btn-add, .sidebar-menu {

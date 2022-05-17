@@ -2,6 +2,12 @@
 let div_btn = document.getElementById("btn-add")
 let btn = document.getElementById('btn')
 let btn_icon = document.getElementById('btn-icon')
+let btn_user = document.querySelector('#usuario')
+let div_menu_user = document.querySelector('#drop-user')
+
+btn_user.addEventListener('click', () => {
+    div_menu_user.classList.toggle('active-drop')
+})
 
 div_btn.addEventListener('click', () => {
     let menu = document.getElementById('menu')
