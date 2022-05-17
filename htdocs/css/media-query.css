@@ -10,6 +10,7 @@ body {
   .topo {
     margin: 0;
     padding: 0;
+    height: 0;
   }
 
   .mes {
