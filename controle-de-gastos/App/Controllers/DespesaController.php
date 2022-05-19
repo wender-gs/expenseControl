@@ -14,14 +14,10 @@
           $despesas = Container::getModel('Despesas');
           $fk_id = $_SESSION['id'];
 
-          // // variaveis de paginação
-          // $total_registros_pagina = 15;
-          // $pagina = isset($_REQUEST['pagina']) ? $_REQUEST['pagina'] : 1;
-          // $deslocamento = ($pagina - 1) * $total_registros_pagina;
           $this->view->dados = $despesas->consultarDespesas($fk_id);
-          // $total_despesas = $despesas->getTotalRegistros();
-          // $this->view->total_de_paginas = ceil($total_despesas[0]['total'] / $total_registros_pagina);
-          // $this->view->pagina_ativa = $pagina;
+          $total_despesas = $despesas->getTotalExpense($fk_id);
+          $this->view->totalPaginas = $total_despesas['total'];
+          
 
           $this->view->totalExpenses = $despesas->getValueTotalExpenses($fk_id);
 
@@ -53,6 +49,24 @@
             }
           }
       }
+
+      public function dataExpenseReturn(){
+        $despesas = Container::getModel('Despesas');
+        $fk_id = $_SESSION['id'];
+
+        // variaveis de paginação
+        $total_registros_pagina = $_REQUEST['limit'];
+        $total_despesas = $despesas->getTotalExpense($fk_id);
+        $pagina = isset($_REQUEST['pagina']) ? $_REQUEST['pagina'] : 1;
+        $this->view->totalPaginas = ceil($total_despesas['total'] / $total_registros_pagina);
+        $deslocamento = 0;
+        
+        $this->view->dados = $despesas->limitExpenses($fk_id, $total_registros_pagina, $deslocamento);
+
+        $this->render('return-data-expense');
+      }
+
+      
       
 
       // manipulation of data using the view

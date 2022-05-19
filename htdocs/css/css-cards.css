@@ -113,6 +113,7 @@
 }
 
 .card-lg.tabela {
+  display: block;
   height: auto;
   width: auto;
   background-color: #fff;
@@ -167,6 +168,57 @@
   font-weight: bolder;
   font-size: 1.2em;
   color: #5c5c5c;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 10px 25px 10px 15px;
+  font-size: 13px;
+}
+
+.lPP {
+  cursor: pointer;
+  padding: 5px 8px 5px 8px;
+  border-radius: 15px;
+  background-color: #F2F2F2;
+  margin-left: 5px;
+}
+.lPP i {
+  position: relative;
+  top: -3.3px;
+  padding-left: 4px;
+}
+
+#lPPM {
+  display: none;
+  position: fixed;
+  bottom: 8px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 25px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+#lPPM .radio {
+  display: none;
+}
+
+.optlpp {
+  padding: 10px;
+}
+.optlpp label {
+  cursor: pointer;
+}
+
+.toggles {
+  padding-left: 15px;
+  color: #d1d1d1;
+}
+.toggles i {
+  padding: 12px;
+  border-radius: 50%;
 }
 
 /*# sourceMappingURL=css-cards.css.map */

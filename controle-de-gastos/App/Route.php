@@ -146,14 +146,19 @@
                 'action' => 'logout'
             );
 
-
-            //teste
-
             $route['loginGoogle'] = array(
                 'route' => '/loginGoogle',
                 'controller' => 'indexController',
                 'action' => 'loginGoogle'
             );
+
+            $route['dataExpenseReturn'] = array(
+                'route' => '/dataExpenseReturn',
+                'controller' => 'despesaController',
+                'action' => 'dataExpenseReturn'
+            );
+
+
 
 
             

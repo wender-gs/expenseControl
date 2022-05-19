@@ -56,9 +56,9 @@
                     tb_expenses
                 WHERE
                     fk_id_user = :id_user
+                
                 ORDER BY
-                    date_expense DESC;
-            ";
+                    date_expense DESC;";
 
             $stmt = $this->db->prepare($query);
 
@@ -67,6 +67,57 @@
             $stmt->execute();
 
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+        public function limitExpenses($fk_user, $limit, $offset){
+            $query = "
+                SELECT 
+                    id, 
+                    date_expense, 
+                    recipient, 
+                    value_expense, 
+                    isPaid, 
+                    category, 
+                    wallet 
+                FROM 
+                    tb_expenses
+                WHERE
+                    fk_id_user = :id_user
+                
+                ORDER BY
+                    date_expense DESC
+                LIMIT 
+                    $limit
+                OFFSET
+                    $offset
+                ;";
+
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindValue(':id_user', $fk_user);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+
+        public function getTotalExpense($fk_user){
+            $query = "
+            SELECT 
+                count(*) as total 
+            FROM 
+                tb_expenses
+            WHERE
+                fk_id_user = :id_user;";
+
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindValue(':id_user', $fk_user);
+
+            $stmt->execute();
+
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
         }
 
         public function getValueTotalExpenses($fk_user){

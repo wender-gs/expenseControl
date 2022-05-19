@@ -2,6 +2,8 @@
     if(!(isset($_SESSION['logged']) && $_SESSION['logged'] === 'LOGGED')){
         header('Location: /?session=timeOut');
     }
+
+    echo $this->view->totalPaginas;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -27,7 +29,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500&display=swap" rel="stylesheet"> 
-        <title>Dashboard</title>
+        <title>Despesas</title>
     </head>
     <body>
 
@@ -494,50 +496,112 @@
 
             <!-- tabela -->
             <div class="card-lg tabela">
-                <table>
-                    <thead class="thead">
-                        <tr>
-                            <th scope="col">Situação</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Beneficiário</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Conta</th>
-                            <th scope="col">Valor</th>
-                            <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php foreach($this->view->dados as $key => $despesa){ ?>
-                            <tr id="expense_<?= $despesa['id'] ?>">
-                                <td>
-                                    <?php if($despesa['isPaid'] == 'pago'){ ?>
-                                        <span style="background-color: #4CAF50;" class="status"><i class="fa-solid fa-check paid"></i></span>
-                                    <?php }else if($despesa['isPaid'] == 'n/p'){ ?>
-                                        <span class="status"><i class="fa-solid fa-exclamation np"></i></span>
-                                    <?php } ?>
-
-                                </td>
-                                <td><?= substr($despesa['date_expense'], 8) . '/' . substr($despesa['date_expense'], 5, 2) . '/' . substr($despesa['date_expense'], 0,4) ?></td>
-                                <td><?= $despesa['recipient'] ?></td>
-                                <td><?=$despesa['category']?></td>
-                                <td><?=$despesa['wallet']?></td>
-                                <td class="fw-light text-danger"><?='R$ ' . str_replace('.', ',', $despesa['value_expense'])?></td>
-                                <td>
-                                    <div class="table-box">
-                                        <?php if($despesa['isPaid'] == 'n/p'){ ?>
-                                            <span onclick="pay(<?= $despesa['id'] ?>)" class="action pe-3"><abbr title="Pagar"><i class="fa-regular fa-circle-check"></i></abbr></span>
-                                        <?php } ?>
-                                        <span onclick="edit(<?= $despesa['id'] ?>)" class="action pe-3"><abbr title="Editar"><i class="fa-solid fa-pencil"></i></abbr></span>
-                                        <span onclick="exclude(<?= $despesa['id'] ?>)" class="action"><abbr title="Excluir"><i class="fa-solid fa-trash-can"></i></abbr></span>
-                                    </div>
-                                </td>
+                <div>
+                    <table>
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">Situação</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Beneficiário</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Conta</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Ações</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody id="tbody-data">                            
+                        </tbody>                    
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span>Linhas por página:</span>
+                    <div id="sLPP" class="lPP">
+                        <span class="ql" id="nOL"></span>
+                        <i class="fa-solid fa-sort-down"></i>
+                    </div>
+
+                    <div class="toggles">
+                        <i id="first-page" class="fa-solid fa-angles-left"></i>
+                        <i class="fa-solid fa-chevron-left"></i>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <i id="last-page" class="fa-solid fa-angles-right"></i>
+                    </div>
+
+                    <div id="lPPM">
+                        <div class="optlpp">
+                            <input type="radio" name="lpp" id="5" class="radio" value="5">
+                            <label for="5">5</label>
+                        </div>   
+                        <div class="optlpp">
+                            <input type="radio" name="lpp" id="10" class="radio" value="10">
+                            <label for="10">10</label>
+                        </div> 
+                        <div class="optlpp">
+                            <input type="radio" name="lpp" id="25" class="radio" value="25">
+                            <label for="25">25</label>
+                        </div> 
+                        <div class="optlpp">
+                            <input type="radio" name="lpp" id="50" class="radio" value="50">
+                            <label for="50">50</label>
+                        </div>             
+                    </div>
+                </div>
             </div>
         </div>
+
+
+        <script>
+            let q = document.querySelector('#sLPP')
+            let ops = document.querySelectorAll('.optlpp')
+            let textPerPage = document.querySelector('#nOL')
+            let qbox = document.querySelector('#lPPM')
+
+            q.addEventListener('click', () => {
+                qbox.classList.toggle('d-block')
+            })
+
+            window.onload = () => {
+                getDataExpense()
+            }
+
+            ops.forEach(i => {
+                i.addEventListener('click', () => {
+                    let optValue = i.querySelector('input').value
+                    qbox.classList.remove('d-block')
+                    getDataExpense(optValue)
+                })
+            })
+
+            function getDataExpense(limit = 5, offset = 0, pg = 1, tp){
+                let fp = document.querySelector('#first-page')
+                let lp = document.querySelector('#last-page')
+
+                const xhttp = new XMLHttpRequest()
+                xhttp.onreadystatechange = () => {
+                    if(xhttp.readyState === 4 && xhttp.status === 200){
+                        document.querySelector('#tbody-data').innerHTML = xhttp.responseText
+                        textPerPage.innerHTML = limit
+                        fp.addEventListener('click', () => {
+                            getDataExpense()
+                            console.log('oka-firstpage')
+
+                        })
+
+                        lp.addEventListener('click', () => {
+                            //getDataExpense()
+                            console.log('oka-last-page')
+                            console.log(limit, offset)
+
+                        })
+                    }
+                }
+                xhttp.open('GET', `https://controledegastos.com/dataExpenseReturn?limit=${limit}&offset=${offset}&pg=${pg}`)
+                xhttp.send()
+            }
+
+
+
+        </script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="./js-bootstrap/bootstrap.bundle.min.js"></script>
