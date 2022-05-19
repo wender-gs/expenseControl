@@ -6,10 +6,6 @@ body, html {
     height: 100%;
 }
 
-body{
-    padding-right: 10px;
-}
-
 /*contentudo*/
 h3{
     font-family: 'Maven Pro', sans-serif;
@@ -147,6 +143,12 @@ h5{
 .topo{
     display: flex;
     justify-content: space-between;
+}
+
+#expense-pg.topo, #rent-pg.topo{
+    justify-content: end;
+    padding-top: 35px;
+    padding-bottom: 20px;
 }
 
 .status{
@@ -329,8 +331,8 @@ h5{
 }
 
 .drop-menu{
-    position: fixed;
-    top: 160px;
+    position: absolute;
+    top: 185px;
     width: 180px;
     height: auto !important;
     border-radius: 25px;
@@ -496,7 +498,7 @@ h5{
     padding: 5px 0;
 
     position: absolute;
-    top: 75px;
+    top: 100px;
     right: 10px;
 
     background-color: #FFF;
