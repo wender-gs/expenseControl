@@ -133,10 +133,7 @@ h5 {
 
 .topo {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
+  justify-content: space-between;
 }
 
 .status {

@@ -54,7 +54,6 @@ h5{
         width: 45px;
         height: 45px;
         border-radius: 22.5px;
-        //background-color: #5C6BC0;
     }
 
     .user-icon{
@@ -147,10 +146,7 @@ h5{
 
 .topo{
     display: flex;
-    flex-direction: column;
-    justify-content: center;    
-    align-items: center;
-    height: 80px;
+    justify-content: space-between;
 }
 
 .status{
