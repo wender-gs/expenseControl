@@ -2,8 +2,6 @@
     if(!(isset($_SESSION['logged']) && $_SESSION['logged'] === 'LOGGED')){
         header('Location: /?session=timeOut');
     }
-
-    echo $this->view->totalPaginas;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
