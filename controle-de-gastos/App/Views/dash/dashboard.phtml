@@ -335,8 +335,7 @@
                 <div class="topo">
                     <div style="align-self: center;" class="mes">
                         <div class="select-content">
-                            <div class="select-box">
-
+                            <!-- <div class="select-box">
                                 <div class="options-container">
 
                                     <div class="option">
@@ -398,19 +397,22 @@
                                         <input type="radio" class="radio" name="mes" id="dez" value="12">
                                         <label for="dez">Dez</label>
                                     </div>
-                                </div>
+                                </div>                                
+                            </div> -->
 
-                                <div id="selectMonth" class="selected">
-                                    <span id="mes">Mês</span>
-                                </div>
+                            <div id="show-calendar" class="selected">
+                                <span id="mes">
+                                    Mês
+                                </span>
+                                <span class="float-end pe-2"><i class="fa-solid fa-angle-down"></i></span>
                             </div>
                         </div>
 
-                        <div class="calendar">
+                        <div id="calendar" class="calendar d-none">
                             <div class="m-header">
-                                <i class="fa-solid fa-angle-left left"></i>
-                                <span>Ano</span>
-                                <i class="fa-solid fa-angle-right right"></i>
+                                <i id="left" class="fa-solid fa-angle-left left"></i>
+                                <span id="year" class="fw-bolder">2022</span>
+                                <i id="right" class="fa-solid fa-angle-right right"></i>
                             </div>
 
                             <div class="m-body">
@@ -562,6 +564,12 @@
             function fechar_div(){
                 document.getElementById('register').style.display = 'none'
             }
+        </script>
+
+        <script>
+            
+
+
         </script>
     </body>
 </html>

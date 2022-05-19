@@ -4,11 +4,11 @@
   overflow-x: hidden;
   width: 300px;
   height: 297.95px;
-  position: absolute;
+  position: fixed;
   top: 75px;
   right: 400px;
   z-index: 15;
-  box-shadow: 2px 2px 3px black;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   background-color: #FFF;
   border-radius: 15px;
 }
@@ -17,19 +17,27 @@
   background-color: #6515DD;
   font-size: 20px;
   color: #FFF;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
 }
+.m-header .left, .m-header .right {
+  cursor: pointer;
+  padding: 10px 15px 10px 15px;
+  border-radius: 50%;
+}
+.m-header .left:hover, .m-header .right:hover {
+  background-color: #6114D4;
+}
 .m-header .left {
-  padding-right: 50px;
+  margin-right: 50px;
 }
 .m-header .right {
-  padding-left: 50px;
+  margin-left: 50px;
 }
 
 .m-body {
   margin-top: 25px;
-  padding: 0 15px 0 15px;
+  padding: 0;
   text-align: center;
 }
 .m-body ul {
@@ -43,7 +51,12 @@
   cursor: pointer;
   color: #a5a3a1;
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 14px;
+  padding: 5px 12px 5px 12px;
+  border-radius: 20px;
+}
+.m-body ul li span:hover {
+  background-color: #F5F5F5;
 }
 
 .m-footer {
@@ -57,12 +70,30 @@
   color: #653CEB;
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: bold;
   padding: 5px;
   border-radius: 25px;
 }
 .m-footer .cancelar:hover, .m-footer .m-atual:hover {
   background-color: #f1f1f1;
+}
+
+#show-calendar {
+  cursor: pointer;
+  border: 1px solid #b5b5b5;
+  border-radius: 25px;
+  padding: 5px 10px 5px 10px;
+  margin-top: 50px;
+  width: 150px;
+  text-align: center;
+}
+#show-calendar:hover {
+  background-color: #E4E9F1;
+  transition: all 0.5s;
+}
+
+#mes {
+  text-transform: capitalize;
 }
 
 /*# sourceMappingURL=calendar.css.map */
