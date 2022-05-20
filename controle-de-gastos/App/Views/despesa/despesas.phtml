@@ -491,9 +491,9 @@
                 <div>
                     <div class="calendar-transation">
                         <div class="view despesa-list">
-                            <span><i class="fa-solid fa-angle-left"></i></span>
-                            <span class="text-month"><span class="month">maio</span> <span class="year">2022</span></span>
-                            <span><i class="fa-solid fa-angle-right"></i></span>
+                            <span><i id="prevMonth" class="fa-solid fa-angle-left"></i></span>
+                            <span id="text-month" class="text-month"><span class="month">maio</span> <span class="year">2022</span></span>
+                            <span><i id="nextMonth" class="fa-solid fa-angle-right"></i></span>
                         </div>
                     </div>
                     <table>
@@ -545,6 +545,42 @@
                 </div>
             </div>
         </div>
+
+
+        <script>
+            let textMonth = document.querySelector('#text-month')
+            let date = new Date()
+            
+            let nextMonth = document.querySelector('#nextMonth')
+            let prevMonth = document.querySelector('#prevMonth')
+
+            let currentMonth = date.getMonth()+1
+
+            textMonth.addEventListener('click', () => {
+                getExpenseForDate()
+            })
+
+            nextMonth.addEventListener('click', () => {
+                console.log(currentMonth += 1)
+
+                if(currentMonth >= 12){
+                    currentMonth = 11
+                }
+            })
+
+            prevMonth.addEventListener('click', () => {
+                console.log(currentMonth -= 1)
+
+                if(currentMonth <= 1){
+                    currentMonth = 0
+                }
+            })
+
+            function getExpenseForDate(){               
+
+                console.log(currentMonth)
+            }
+        </script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="./js-bootstrap/bootstrap.bundle.min.js"></script>
