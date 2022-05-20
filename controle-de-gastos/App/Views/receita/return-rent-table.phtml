@@ -1,0 +1,26 @@
+<?php foreach($this->view->dados as $key => $rent){ ?>
+    <tr id="expense_<?= $rent['id'] ?>">
+        <td>
+            <?php if($rent['isPaid'] == 'liquidado'){ ?>
+                <span style="background-color: #4CAF50;" class="status"><i class="fa-solid fa-check paid"></i></span>
+            <?php }else if($rent['isPaid'] == 'pendente'){ ?>
+                <span class="status"><i class="fa-solid fa-exclamation np"></i></span>
+            <?php } ?>
+
+        </td>
+        <td><?= substr($rent['date_rent'], 8) . '/' . substr($rent['date_rent'], 5, 2) . '/' . substr($rent['date_rent'], 0,4) ?></td>
+        <td><?= $rent['payer'] ?></td>
+        <td><?=$rent['category']?></td>
+        <td><?=$rent['wallet']?></td>
+        <td class="fw-light text-success"><?='R$ ' . str_replace('.', ',', $rent['value_rent'])?></td>
+        <td>
+            <div class="table-box">
+                <?php if($rent['isPaid'] == 'pendente'){ ?>
+                    <span onclick="recive(<?= $rent['id'] ?>)" class="action pe-3"><abbr title="Pagar"><i class="fa-regular fa-circle-check"></i></abbr></span>
+                <?php } ?>
+                <span onclick="editRent(<?= $rent['id'] ?>)" class="action pe-3"><abbr title="Editar"><i class="fa-solid fa-pencil"></i></abbr></span>
+                <span onclick="excludeRent(<?= $rent['id'] ?>)" class="action"><abbr title="Excluir"><i class="fa-solid fa-trash-can"></i></abbr></span>
+            </div>
+        </td>
+    </tr>
+<?php } ?>

@@ -58,9 +58,15 @@
         $total_registros_pagina = $_REQUEST['limit'];
         $deslocamento = ($pagina - 1) * $total_registros_pagina;
 
-        $this->view->dados = $despesas->limitExpenses($fk_id, $total_registros_pagina, $deslocamento);
+        try{
+          if($this->view->dados = $despesas->limitExpenses($fk_id, $total_registros_pagina, $deslocamento)){
+            $this->render('return-data-expense');
+          }
+        }catch(\PDOException $e){
+          
+        }
 
-        $this->render('return-data-expense');
+        
       }
 
       // manipulation of data using the view

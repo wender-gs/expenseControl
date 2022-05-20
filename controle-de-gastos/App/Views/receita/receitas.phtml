@@ -406,7 +406,7 @@
                     <ul>
                         <li><a href=""><i class="fa-regular fa-circle-user"></i>Meu Perfil</a></li>
                         <li><a href=""><i class="fa-solid fa-gear"></i>Configurações</a></li>
-                        <li><a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i>Sair</a></li>
+                        <li><a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Sair</a></li>
                     </ul>
                 </div>
             </div>
@@ -485,59 +485,63 @@
 
             <!-- tabela -->
             <div class="card-lg tabela">
-                <table>
-                    <thead class="thead">
-                        <tr>
-                            <th scope="col">Situação</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Beneficiário</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Conta</th>
-                            <th scope="col">Valor</th>
-                            <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php foreach($this->view->dados as $key => $rent){ ?>
-                            <tr id="expense_<?= $rent['id'] ?>">
-                                <td>
-                                    <?php if($rent['isPaid'] == 'liquidado'){ ?>
-                                        <span style="background-color: #4CAF50;" class="status"><i class="fa-solid fa-check paid"></i></span>
-                                    <?php }else if($rent['isPaid'] == 'pendente'){ ?>
-                                        <span class="status"><i class="fa-solid fa-exclamation np"></i></span>
-                                    <?php } ?>
-
-                                </td>
-                                <td><?= substr($rent['date_rent'], 8) . '/' . substr($rent['date_rent'], 5, 2) . '/' . substr($rent['date_rent'], 0,4) ?></td>
-                                <td><?= $rent['payer'] ?></td>
-                                <td><?=$rent['category']?></td>
-                                <td><?=$rent['wallet']?></td>
-                                <td class="fw-light text-success"><?='R$ ' . str_replace('.', ',', $rent['value_rent'])?></td>
-                                <td>
-                                    <div class="table-box">
-                                        <?php if($rent['isPaid'] == 'pendente'){ ?>
-                                            <span onclick="recive(<?= $rent['id'] ?>)" class="action pe-3"><abbr title="Pagar"><i class="fa-regular fa-circle-check"></i></abbr></span>
-                                        <?php } ?>
-                                        <span onclick="editRent(<?= $rent['id'] ?>)" class="action pe-3"><abbr title="Editar"><i class="fa-solid fa-pencil"></i></abbr></span>
-                                        <span onclick="excludeRent(<?= $rent['id'] ?>)" class="action"><abbr title="Excluir"><i class="fa-solid fa-trash-can"></i></abbr></span>
-                                    </div>
-                                </td>
+                <div>
+                    <table>
+                        <div class="calendar-transation">
+                            <div class="view receitas">
+                                <span><i class="fa-solid fa-angle-left"></i></span>
+                                <span class="text-month"><span class="month">maio</span> <span class="year">2022</span></span>
+                                <span><i class="fa-solid fa-angle-right"></i></span>
+                            </div>
+                        </div>
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">Situação</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Beneficiário</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Conta</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Ações</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody id="tbody-data">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span>Linhas por página:</span>
+                    <div id="sLPP" class="lPP">
+                        <span class="ql" id="nOL"></span>
+                        <i class="fa-solid fa-sort-down"></i>
+                    </div>
+                    <div class="toggles">
+                        <i onclick="getDataExpense()" class="fa-solid fa-angles-left"></i>
+                        <i onclick="previusPage(<?= $this->view->totalDeRceitas['total'] ?>)" class="fa-solid fa-chevron-left"></i>
+                        <i onclick="nextPage(<?= $this->view->totalDeRceitas['total'] ?>)" class="fa-solid fa-chevron-right"></i>
+                        <i onclick="lastPage(<?= $this->view->totalDeRceitas['total'] ?>)" class="fa-solid fa-angles-right"></i>
+                    </div>
+                    <div id="lPPM">
+                        <div class="optlpp">
+                            <input type="radio" name="lpp" id="5" class="radio" value="5">
+                            <label for="5">5</label>
+                        </div>   
+                        <div class="optlpp">
+                            <input type="radio" name="lpp" id="10" class="radio" value="10">
+                            <label for="10">10</label>
+                        </div> 
+                        <div class="optlpp">
+                            <input type="radio" name="lpp" id="25" class="radio" value="25">
+                            <label for="25">25</label>
+                        </div> 
+                        <div class="optlpp">
+                            <input type="radio" name="lpp" id="50" class="radio" value="50">
+                            <label for="50">50</label>
+                        </div>             
+                    </div>
+                </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="./js-bootstrap/bootstrap.bundle.min.js"></script>
@@ -546,8 +550,8 @@
         <script src="./js/receita.js"></script>
         <script src="./js/edit-rent.js"></script>
         <script src="./js/interaction-table.js"></script>
+        <script src="./js/pagination-rent.js"></script>
         <script>
-
             function show(id){
                 document.getElementById(id).classList.toggle('d-none')
             }

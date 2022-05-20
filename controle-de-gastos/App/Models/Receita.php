@@ -66,6 +66,58 @@
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         }
 
+        public function getTotalRents($fk_id){
+            $query = "
+                SELECT
+                    COUNT(*) AS total
+                FROM 
+                    tb_rent
+                WHERE
+                    fk_id_user = :fk_id
+            ";
+
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindValue(':fk_id', $fk_id);
+
+            $stmt->execute();
+
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
+        }
+
+
+        public function limitRent($fk_user, $limit, $offset){
+            $query = "
+                SELECT
+                    id,
+                    fk_id_user,
+                    date_rent,
+                    payer,
+                    value_rent,
+                    isPaid,
+                    category,
+                    wallet
+                FROM 
+                    tb_rent
+                WHERE
+                    fk_id_user = :fk_id
+                ORDER BY
+                    date_rent DESC
+                LIMIT
+                    $limit
+                OFFSET
+                    $offset;
+            ";
+
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindValue(':fk_id', $fk_user);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
         public function getValueTotalRent($fk_id){
             $query = "
                 SELECT

@@ -158,6 +158,12 @@
                 'action' => 'dataExpenseReturn'
             );
 
+            $route['dataRentReturn'] = array(
+                'route' => '/dataRentReturn',
+                'controller' => 'receitaController',
+                'action' => 'dataRentReturn'
+            );
+
 
 
 

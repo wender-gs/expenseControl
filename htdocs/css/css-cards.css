@@ -222,5 +222,8 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.toggles i:hover {
+  background-color: #f0f0f0;
+}
 
 /*# sourceMappingURL=css-cards.css.map */

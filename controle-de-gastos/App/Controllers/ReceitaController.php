@@ -13,18 +13,33 @@
             $fk_id = $_SESSION['id'];
 
             // variaveis de paginação
-            // $total_registros = 10;
-            // $pagina = isset($_REQUEST['pagina']) ? $_REQUEST['pagina'] : 1;
-            // $deslocamento = ($pagina - 1) * $total_registros;
-            // $total_receita = $receita->getTotalReceitas();
-            // $this->view->total_de_paginas = ceil($total_receita['total'] / $total_registros);
-            // $this->view->pagina_ativa = $pagina; 
+            $this->view->totalDeRceitas = $receita->getTotalRents($fk_id);
+            
 
             $this->view->totalRent = $receita->getValueTotalRent($fk_id);
             $this->view->rentPaid = $receita->getRentIsPaid($fk_id);
             $this->view->rentNp = $receita->getRentNoPaid($fk_id);
             $this->view->dados = $receita->consultRent($fk_id);
             $this->render('receitas');
+        }
+
+
+        public function dataRentReturn(){
+            $receita = Container::getModel('Receita');
+            $fk_id = $_SESSION['id'];
+
+            // variaveis de paginação
+            $pagina = isset($_REQUEST['pg']) ? $_REQUEST['pg'] : 1;
+            $total_registros_pagina = $_REQUEST['limit'];
+            $deslocamento = ($pagina - 1) * $total_registros_pagina;
+
+            try{
+                if($this->view->dados = $receita->limitRent($fk_id, $total_registros_pagina, $deslocamento)){
+                    $this->render('return-rent-table');
+                }
+            }catch(\PDOException $e){
+            
+            }
         }
 
         public function novaReceita(){

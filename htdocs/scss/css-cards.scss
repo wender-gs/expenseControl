@@ -238,5 +238,9 @@
         padding: 12px;
         border-radius: 50%;
         cursor: pointer;
+
+        &:hover{
+            background-color: #f0f0f0;
+        }
     }
 }

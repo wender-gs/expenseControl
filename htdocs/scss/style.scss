@@ -535,3 +535,61 @@ h5{
 .active-drop{
     display: block;
 }
+
+
+.calendar-transation{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.view{
+    font-size: 20px;
+}
+
+.view .text-month{
+    cursor: pointer;
+    border-radius: 30px;
+    text-transform: capitalize;
+
+    margin: 0 25px 0 25px;
+
+    padding: 8px 20px;
+}
+
+.view .text-month .month{
+    font-weight: bold;
+}
+
+
+.view i{
+    cursor: pointer;
+    padding: 18px;
+    border-radius: 50%;
+}
+
+.view i:hover{
+    background-color: #f5f5f5;
+}
+
+.view.receitas{
+    i{
+        color: #4CAF50;
+    }
+
+    .text-month{
+        color: #4CAF50;
+        border: 2px solid #4CAF50;
+    }
+}
+
+.view.despesa-list{
+    i{
+        color: #E8562F;
+    }
+
+    .text-month{
+        color: #E8562F;
+        border: 2px solid #E8562F;
+    }
+}
