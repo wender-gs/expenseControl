@@ -65,11 +65,6 @@
                     header('Location: /dashboard?register=receitaRegisterError');
                 } 
             }
-
-
-            echo '<pre>';
-            print_r($_REQUEST);
-            echo '</pre>';
         }
 
         public function payRent(){

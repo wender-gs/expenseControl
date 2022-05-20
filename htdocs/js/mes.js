@@ -89,7 +89,6 @@ function getDataByMonth(m = month){
 
     xhttpDate.onreadystatechange = () => {
         if(xhttpDate.status == 200 && xhttpDate.readyState == 4){
-            console.log(JSON.parse(xhttpDate.responseText))
 
             let dados = JSON.parse(xhttpDate.responseText)
 
