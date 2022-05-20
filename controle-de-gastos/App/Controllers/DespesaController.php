@@ -9,20 +9,19 @@
     class DespesaController extends Action{
 
       // Back-end interaction with data base
-
       public function consultar(){
           $despesas = Container::getModel('Despesas');
           $fk_id = $_SESSION['id'];
 
-          $this->view->dados = $despesas->consultarDespesas($fk_id);
-          $total_despesas = $despesas->getTotalExpense($fk_id);
-          $this->view->totalPaginas = $total_despesas['total'];
-          
+          // Variaveis de  paginação
+          $this->view->totalDeDespesas = $despesas->getTotalExpense($fk_id);
+
+          $this->view->dados = $despesas->consultarDespesas($fk_id);         
 
           $this->view->totalExpenses = $despesas->getValueTotalExpenses($fk_id);
 
           $this->view->expensesNp = $despesas->getExpensesNoPaid($fk_id);
-          $this->view->expensesPaid = $despesas->getExpensesIsPaid($fk_id);
+          $this->view->expensesPaid = $despesas->getExpensesIsPaid($fk_id); 
           $this->render('despesas');
       }
 
@@ -55,22 +54,16 @@
         $fk_id = $_SESSION['id'];
 
         // variaveis de paginação
+        $pagina = isset($_REQUEST['pg']) ? $_REQUEST['pg'] : 1;
         $total_registros_pagina = $_REQUEST['limit'];
-        $total_despesas = $despesas->getTotalExpense($fk_id);
-        $pagina = isset($_REQUEST['pagina']) ? $_REQUEST['pagina'] : 1;
-        $this->view->totalPaginas = ceil($total_despesas['total'] / $total_registros_pagina);
-        $deslocamento = 0;
-        
+        $deslocamento = ($pagina - 1) * $total_registros_pagina;
+
         $this->view->dados = $despesas->limitExpenses($fk_id, $total_registros_pagina, $deslocamento);
 
         $this->render('return-data-expense');
       }
 
-      
-      
-
       // manipulation of data using the view
-
       public function payExpense(){
         $despesas = Container::getModel('Despesas');
 

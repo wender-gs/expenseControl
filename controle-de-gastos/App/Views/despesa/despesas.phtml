@@ -30,7 +30,6 @@
         <title>Despesas</title>
     </head>
     <body>
-
         <!-- modal receitas -->
         <div id="modal-receita" class="modal d-none">
             <div class="modal-body">
@@ -403,7 +402,6 @@
 
         <!-- conteudo principal -->
         <div id="content" class="content">
-
             <div class="topo" id="expense-pg">
                 <div id="usuario" class="user">
                     <span class="user"><img class="user-image" src="<?= isset($_SESSION['image']) ? $_SESSION['image'] : '' ?>" alt=""></span>
@@ -419,7 +417,6 @@
                     </ul>
                 </div>
             </div>
-
             <!-- barra de opções -->
             <div class="interaction">
                 <div onclick="show('drop')" class="left-btn">
@@ -463,7 +460,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- cartoes de valores -->
             <div class="linha">
                 <div class="cartao desepesas">
@@ -490,8 +486,6 @@
                     <h4>R$ <?= empty($this->view->totalExpenses['total']) ? '0,00' : str_replace('.', ',', $this->view->totalExpenses['total']) ?></h4>
                 </div>
             </div>
-
-
             <!-- tabela -->
             <div class="card-lg tabela">
                 <div>
@@ -517,14 +511,12 @@
                         <span class="ql" id="nOL"></span>
                         <i class="fa-solid fa-sort-down"></i>
                     </div>
-
                     <div class="toggles">
-                        <i id="first-page" class="fa-solid fa-angles-left"></i>
-                        <i class="fa-solid fa-chevron-left"></i>
-                        <i class="fa-solid fa-chevron-right"></i>
-                        <i id="last-page" class="fa-solid fa-angles-right"></i>
+                        <i onclick="getDataExpense()" class="fa-solid fa-angles-left"></i>
+                        <i onclick="previusPage(<?= $this->view->totalDeDespesas['total'] ?>)" class="fa-solid fa-chevron-left"></i>
+                        <i onclick="nextPage(<?= $this->view->totalDeDespesas['total'] ?>)" class="fa-solid fa-chevron-right"></i>
+                        <i onclick="lastPage(<?= $this->view->totalDeDespesas['total'] ?>)" class="fa-solid fa-angles-right"></i>
                     </div>
-
                     <div id="lPPM">
                         <div class="optlpp">
                             <input type="radio" name="lpp" id="5" class="radio" value="5">
@@ -547,60 +539,6 @@
             </div>
         </div>
 
-
-        <script>
-            let q = document.querySelector('#sLPP')
-            let ops = document.querySelectorAll('.optlpp')
-            let textPerPage = document.querySelector('#nOL')
-            let qbox = document.querySelector('#lPPM')
-
-            q.addEventListener('click', () => {
-                qbox.classList.toggle('d-block')
-            })
-
-            window.onload = () => {
-                getDataExpense()
-            }
-
-            ops.forEach(i => {
-                i.addEventListener('click', () => {
-                    let optValue = i.querySelector('input').value
-                    qbox.classList.remove('d-block')
-                    getDataExpense(optValue)
-                })
-            })
-
-            function getDataExpense(limit = 5, offset = 0, pg = 1, tp){
-                let fp = document.querySelector('#first-page')
-                let lp = document.querySelector('#last-page')
-
-                const xhttp = new XMLHttpRequest()
-                xhttp.onreadystatechange = () => {
-                    if(xhttp.readyState === 4 && xhttp.status === 200){
-                        document.querySelector('#tbody-data').innerHTML = xhttp.responseText
-                        textPerPage.innerHTML = limit
-                        fp.addEventListener('click', () => {
-                            getDataExpense()
-                            console.log('oka-firstpage')
-
-                        })
-
-                        lp.addEventListener('click', () => {
-                            //getDataExpense()
-                            console.log('oka-last-page')
-                            console.log(limit, offset)
-
-                        })
-                    }
-                }
-                xhttp.open('GET', `https://controledegastos.com/dataExpenseReturn?limit=${limit}&offset=${offset}&pg=${pg}`)
-                xhttp.send()
-            }
-
-
-
-        </script>
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="./js-bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./js/main.js"></script>
@@ -608,5 +546,6 @@
         <script src="./js/receita.js"></script>
         <script src="./js/edit.js"></script>
         <script src="./js/interaction-table.js"></script>
+        <script src="./js/pagination.js"></script>
     </body>
 </html>

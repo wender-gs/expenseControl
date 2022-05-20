@@ -100,8 +100,7 @@
 
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         }
-
-
+        
         public function getTotalExpense($fk_user){
             $query = "
             SELECT 
