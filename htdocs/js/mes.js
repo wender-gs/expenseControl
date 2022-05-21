@@ -3,6 +3,8 @@
 let data = new Date()
 let monthBruto = (data.getMonth()+1)
 
+let currentM = document.querySelector('#currentM')
+
 let month = null
 
 switch(monthBruto){
@@ -104,6 +106,8 @@ function getDataByMonth(m = month){
 
 
 
+
+
 let calendar = document.querySelector('#show-calendar')
 let calendarBox = document.querySelector('#calendar')
 let months = document.querySelectorAll('.m')
@@ -146,6 +150,58 @@ switch(monthDefault){
         month2 = '09'
         break
 }
+
+currentM.addEventListener('click', () => {
+    let textMonth = document.querySelector('#mes')
+
+    switch(month){
+        case '01':
+            textMonth.innerHTML = 'Jan'
+            break
+        case '02':
+            textMonth.innerHTML = 'Fev'
+            break
+        case '03':
+            textMonth.innerHTML = 'Mar'
+            break
+        case '04':
+            textMonth.innerHTML = 'Abr'
+            break
+        case '05':
+            textMonth.innerHTML = 'Mai'
+            break
+        case '06':
+            textMonth.innerHTML = 'Jun'
+            break
+        case '07':
+            textMonth.innerHTML = 'Jul'
+            break
+        case '08':
+            textMonth.innerHTML = 'Ago'
+            break
+        case '09':
+            textMonth.innerHTML = 'Set'
+            break
+        case 10:
+            textMonth.innerHTML = 'Out'
+            break
+        case 11:
+            textMonth.innerHTML = 'Nov'
+            break
+        case 12:
+            textMonth.innerHTML = 'Dez'
+            break
+    }
+
+    calendarBox.classList.toggle('d-none')
+
+    getDataByMonth()
+    
+})
+
+cancelar.addEventListener('click', () => {
+    calendarBox.classList.toggle('d-none')
+})
 
 
 switch(month){
@@ -213,6 +269,10 @@ calendar.addEventListener('click', () => {
 })
 
 
+
+
+
+
 function getDataForDash(month = monthDefault){
     let newMonth = null
     const xhttp = new XMLHttpRequest()
@@ -270,4 +330,5 @@ function getDataForDash(month = monthDefault){
     xhttp.open('GET', `/getDataByMonth?month=${newMonth}`)
     xhttp.send()
 
-}   
+}
+
