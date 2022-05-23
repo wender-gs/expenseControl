@@ -452,8 +452,8 @@
                         <span class="icon"><i class="fa-solid fa-plus"></i></span>
                         <span>nova despesa</span>
                     </div>
-                    <div class="search">
-                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <div id="searchBtn" class="search">
+                        <span><i id="searchIcon" class="fa-solid fa-magnifying-glass"></i></span>
                     </div>
                     <div class="filter">
                         <span><i class="fa-solid fa-filter"></i></span>
@@ -548,6 +548,8 @@
 
 
         <script>
+
+            // calendario de despesas
             let textMonth = document.querySelector('#text-month')
             let date = new Date()
             
@@ -577,9 +579,48 @@
             })
 
             function getExpenseForDate(){               
-
                 console.log(currentMonth)
             }
+        </script>
+
+        <script>
+            // search bar
+
+            const searchBtn = document.querySelector('#searchBtn')
+            let click = 0
+
+            searchBtn.addEventListener('click', () =>{
+
+                if(!(document.getElementById('search'))){
+                    // criando o input de pesquisa
+                    const newInp = document.createElement('input')
+                    newInp.type = 'text'
+                    newInp.id = 'search'
+                    newInp.placeholder = 'Pesquise por beneficiário, categoria ou valor'
+                    newInp.classList = 'inptSearch'
+
+                    searchBtn.appendChild(newInp)
+                    searchBtn.classList = 'search searchClick'
+                }
+                
+                let search = document.getElementById('search')
+                search.focus()
+
+                search.onblur = () => {
+                    search.remove()
+                    searchBtn.classList.remove('searchClick')
+                }
+
+                search.onkeyup = () => {
+                    const xhttp = new XMLHttpRequest()
+
+                    xhttp.onreadystatechange = () => {
+                        console.log(xhttp.responseText)
+                    }
+                    xhttp.open('GET', `https://controledegastos.com/`)
+                    xhttp.send()    
+                }
+            })
         </script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

@@ -274,6 +274,10 @@ h5 {
 .interaction .options-right .filter {
   margin-left: 13px;
 }
+.interaction .options-right .search {
+  transition: width 1.5s;
+  border-radius: 25px;
+}
 .interaction .options-right .rent {
   color: #4CAF50;
 }
@@ -524,6 +528,34 @@ h5 {
 .view.despesa-list .text-month {
   color: #E8562F;
   border: 2px solid #E8562F;
+}
+
+.inptSearch {
+  position: relative;
+  height: 45px;
+  border: none;
+  width: 95%;
+  transition: width 10s;
+}
+.inptSearch:focus {
+  outline: 0;
+}
+
+.searchClick {
+  width: 380px !important;
+  border-radius: 25px !important;
+  transition: width 1.5s;
+  overflow: hidden;
+  padding: 0px !important;
+}
+.searchClick:hover {
+  background-color: #fff !important;
+}
+.searchClick i {
+  position: absolute;
+  right: 75px;
+  top: 150px;
+  z-index: 3;
 }
 
 /*# sourceMappingURL=style.css.map */
