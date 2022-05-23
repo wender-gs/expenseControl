@@ -544,6 +544,8 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
 
 
@@ -612,15 +614,19 @@
                 }
 
                 search.onkeyup = () => {
-                    const xhttp = new XMLHttpRequest()
+                    getExpensesFilter(<?= $_SESSION['id'] ?>, search.value)
+                }
+            })
+
+            function getExpensesFilter(id, value){
+                const xhttp = new XMLHttpRequest()
 
                     xhttp.onreadystatechange = () => {
                         console.log(xhttp.responseText)
                     }
-                    xhttp.open('GET', `https://controledegastos.com/`)
-                    xhttp.send()    
-                }
-            })
+                    xhttp.open('GET', `https://controledegastos.com/filterExpense?id=${id}&value=${value}`)
+                    xhttp.send()  
+            }
         </script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

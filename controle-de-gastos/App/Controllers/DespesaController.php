@@ -69,6 +69,17 @@
         
       }
 
+      public function filterExpense(){
+        $despesas = Container::getModel('Despesas');
+        $id = $_REQUEST['id'];
+        $value = $_REQUEST['value'];
+
+
+        $despesa = $despesas->filterExpenses($id, $value);
+
+        print_r($despesa);
+      }
+
       // manipulation of data using the view
       public function payExpense(){
         $despesas = Container::getModel('Despesas');

@@ -254,6 +254,18 @@
             return $stmt->execute();
         }
 
+        public function filterExpenses($id, $value = '%'){
+            $query = "SELECT * FROM tb_expenses WHERE fk_id_user = :id AND wallet LIKE '%$value%';";
+
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindValue(':id', $id);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
 
     }
 

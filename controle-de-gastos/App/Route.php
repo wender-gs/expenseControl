@@ -164,6 +164,12 @@
                 'action' => 'dataRentReturn'
             );
 
+            $route['filterExpense'] = array(
+                'route' => '/filterExpense',
+                'controller' => 'despesaController',
+                'action' => 'filterExpense'
+            );
+
 
 
 

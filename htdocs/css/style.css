@@ -536,6 +536,7 @@ h5 {
   border: none;
   width: 95%;
   transition: width 10s;
+  color: rgb(99, 99, 99);
 }
 .inptSearch:focus {
   outline: 0;
