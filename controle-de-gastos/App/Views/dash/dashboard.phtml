@@ -461,15 +461,15 @@
                     <div class="right-content">
                         <div class="info-rent">
                             <span>Receitas</span>
-                            <span class="text-success">R$ <?= empty($this->view->totalRent['totalRent']) ? '0' : str_replace('.', ',', $this->view->totalRent['totalRent']) ?></span>
+                            <span class="text-success">R$ <?= empty($this->view->totalRent['totalRent']) ? '0' : number_format($this->view->totalRent['totalRent'], 2, ',', '.' ) ?></span>
                         </div>
                         <div class="info-expense">
                             <span>Despesa</span>
-                            <span class="text-danger">R$ <?= empty($this->view->totalExpenses['totalExpense']) ? '0' : str_replace('.', ',', $this->view->totalExpenses['totalExpense']) ?></span>
+                            <span class="text-danger">R$ <?= empty($this->view->totalExpenses['totalExpense']) ? '0' : number_format($this->view->totalExpenses['totalExpense'], 2, ',', '.') ?></span>
                         </div>
                         <div class="info-balanco">
                             <span>Balanço</span>
-                            <span>R$ <?= str_replace('.', ',', ($this->view->totalRent['totalRent'] - $this->view->totalExpenses['totalExpense'])) ?></span>
+                            <span>R$ <?= number_format(($this->view->totalRent['totalRent'] - $this->view->totalExpenses['totalExpense']), 2, ',', '.') ?></span>
                         </div>
                     </div>
 

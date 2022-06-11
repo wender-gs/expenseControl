@@ -94,9 +94,9 @@ function getDataByMonth(m = month){
 
             let dados = JSON.parse(xhttpDate.responseText)
 
-            document.querySelector('#saldo').innerHTML = `R$ ${(dados.totalRent - dados.totalExpense).toFixed(2)}`
-            document.querySelector('#rent').innerHTML = `R$ ${dados.totalRent ? dados.totalRent.toFixed(2) : (0).toFixed(2)}`
-            document.querySelector('#expense').innerHTML = `R$ ${dados.totalExpense ? dados.totalExpense.toFixed(2) : (0).toFixed(2)}`
+            document.querySelector('#saldo').innerHTML = `R$ ${(dados.totalRent - dados.totalExpense).toLocaleString('pt-br')}`
+            document.querySelector('#rent').innerHTML = `R$ ${dados.totalRent ? dados.totalRent.toLocaleString('pt-br') : (0).toFixed(2)}`
+            document.querySelector('#expense').innerHTML = `R$ ${dados.totalExpense ? dados.totalExpense.toLocaleString('pt-br') : (0).toFixed(2)}`
         }
     }
 

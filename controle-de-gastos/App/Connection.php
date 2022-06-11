@@ -9,7 +9,7 @@
             try{
 
                 $dsn = 'mysql:host=localhost;dbname=db_cg;charset=utf8';
-                $user = 'wendergs';
+                $user = 'wendergs@localhost';
                 $pass = '62446812';
 
                 $conn = new PDO($dsn, $user, $pass);
