@@ -481,7 +481,7 @@
                     <div class="icone-circle">
                         <span class="icone saldo"><i class="fa-solid fa-arrow-up"></i></span>
                     </div>
-                    <h4>R$ <?= empty($this->view->expensesNp['noPaid']) ? '0,00' : str_replace('.', ',', $this->view->expensesNp['noPaid']) ?></h4>
+                    <h4>R$ <?= empty($this->view->expensesNp['noPaid']) ? '0,00' : number_format($this->view->expensesNp['noPaid'], 2, ',', '.')?></h4>
                 </div>
 
                 <div class="cartao desepesas">
@@ -489,7 +489,7 @@
                     <div class="icone-circle">
                         <span class="icone saldo"><i class="fa-solid fa-arrow-down"></i></span>
                     </div>
-                    <h4>R$ <?= empty($this->view->expensesPaid['paid']) ? '0,00' : str_replace('.', ',', $this->view->expensesPaid['paid']) ?></h4>
+                    <h4>R$ <?= empty($this->view->expensesPaid['paid']) ? '0,00' : number_format($this->view->expensesPaid['paid'], 2, ',', '.') ?></h4>
                 </div>
 
                 <div class="cartao desepesas">
@@ -497,7 +497,7 @@
                     <div class="icone-circle c-saldo">
                         <span class="icone saldo"><i class="fa-solid fa-scale-balanced balence"></i></span>
                     </div>
-                    <h4>R$ <?= empty($this->view->totalExpenses['total']) ? '0,00' : str_replace('.', ',', $this->view->totalExpenses['total']) ?></h4>
+                    <h4>R$ <?= empty($this->view->totalExpenses['total']) ? '0,00' : number_format($this->view->totalExpenses['total'], 2, ',', '.') ?></h4>
                 </div>
             </div>
             <!-- tabela -->

@@ -11,7 +11,7 @@
         <td><?= $despesa['recipient'] ?></td>
         <td><?=$despesa['category']?></td>
         <td><?=$despesa['wallet']?></td>
-        <td class="fw-light text-danger"><?='R$ ' . str_replace('.', ',', $despesa['value_expense'])?></td>
+        <td class="fw-light text-danger"><?='R$ ' . number_format($despesa['value_expense'], 2, ',', '.')?></td>
         <td>
             <div class="table-box">
                 <?php if($despesa['isPaid'] == 'n/p'){ ?>

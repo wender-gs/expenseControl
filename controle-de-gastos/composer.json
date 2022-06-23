@@ -1,5 +1,8 @@
 {
     "name": "wendergs/controle-gastos",
+    "description": "Controle de gastos e receitas de forma simplificada",
+    "minimum-stability": "stable",
+    "license": "MIT",
     "require": {
         "php": ">= 7.0"
     },

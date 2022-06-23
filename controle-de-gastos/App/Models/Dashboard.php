@@ -1,7 +1,6 @@
 <?php
     namespace App\Models;
     use CG\Model\Model;
-use Error;
 
     class Dashboard extends Model{
         public function sumExpenses($fk_user){
@@ -38,7 +37,7 @@ use Error;
         }
 
         public function getDataExpense($month, $fk_user){
-            $query = 'SELECT SUM(value_expense) as total FROM tb_expenses WHERE tb_expenses.date_expense like "_____' . $month . '___" AND fk_id_user = :id_user;';
+            $query = 'SELECT SUM(value_expense) as total FROM tb_expenses WHERE tb_expenses.date_expense like "_____%' . $month . '___" AND fk_id_user = :id_user;';
 
             $stmt = $this->db->prepare($query);
 
@@ -50,7 +49,7 @@ use Error;
         }
 
         public function getDataRent($month, $fk_id){
-            $query = 'SELECT SUM(value_rent) as total FROM tb_rent WHERE tb_rent.date_rent like "_____' . $month . '___" AND fk_id_user = :fk;';
+            $query = 'SELECT SUM(value_rent) as total FROM tb_rent WHERE tb_rent.date_rent like "_____%' . $month . '___" AND fk_id_user = :fk;';
 
             $stmt = $this->db->prepare($query);
 

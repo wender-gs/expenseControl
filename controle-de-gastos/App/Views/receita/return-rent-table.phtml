@@ -12,7 +12,7 @@
         <td><?= $rent['payer'] ?></td>
         <td><?=$rent['category']?></td>
         <td><?=$rent['wallet']?></td>
-        <td class="fw-light text-success"><?='R$ ' . str_replace('.', ',', $rent['value_rent'])?></td>
+        <td class="fw-light text-success"><?='R$ ' . number_format($rent['value_rent'], 2, ',', '.')?></td>
         <td>
             <div class="table-box">
                 <?php if($rent['isPaid'] == 'pendente'){ ?>

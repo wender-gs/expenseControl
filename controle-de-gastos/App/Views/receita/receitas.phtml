@@ -476,7 +476,7 @@
                     <div class="icone-circle green">
                         <span class="icone saldo"><i class="fa-solid fa-arrow-up"></i></span>
                     </div>
-                    <h4>R$ <?= empty($this->view->rentNp['noPaid']) ? '0,00' : str_replace('.', ',', $this->view->rentNp['noPaid']) ?></h4>
+                    <h4>R$ <?= empty($this->view->rentNp['noPaid']) ? '0,00' : number_format($this->view->rentNp['noPaid'], 2, ',', '.') ?></h4>
                 </div>
 
                 <div class="cartao desepesas">
@@ -484,7 +484,7 @@
                     <div class="icone-circle green">
                         <span class="icone saldo"><i class="fa-solid fa-arrow-down"></i></span>
                     </div>
-                    <h4>R$ <?= empty($this->view->rentPaid['paid']) ? '0,00' : str_replace('.', ',', $this->view->rentPaid['paid']) ?></h4>
+                    <h4>R$ <?= empty($this->view->rentPaid['paid']) ? '0,00' : number_format($this->view->rentPaid['paid'], 2, ',', '.') ?></h4>
                 </div>
 
                 <div class="cartao desepesas">
@@ -492,7 +492,7 @@
                     <div class="icone-circle green c-saldo">
                         <span class="icone saldo"><i class="fa-solid fa-scale-balanced balence"></i></span>
                     </div>
-                    <h4>R$ <?= empty($this->view->totalRent['total']) ? '0,00' : str_replace('.', ',', $this->view->totalRent['total']) ?></h4>
+                    <h4>R$ <?= empty($this->view->totalRent['total']) ? '0,00' : number_format($this->view->totalRent['total'], 2, ',', '.') ?></h4>
                 </div>
             </div>
 
