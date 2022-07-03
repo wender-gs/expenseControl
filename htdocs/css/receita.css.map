@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["../scss/receita.scss"],"names":[],"mappings":"AAGI;EACI;;;AAIR;EACI;EACA","file":"receita.css"}
+{
+"version": 3,
+"mappings": "AAGI,oDAAO;EACH,aAAa,EAAE,iBAAiB;;AAIxC,kBAAkB;EACd,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,KAAK",
+"sources": ["../scss/receita.scss"],
+"names": [],
+"file": "receita.css"
+}

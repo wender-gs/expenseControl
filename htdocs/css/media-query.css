@@ -1,21 +1,17 @@
 body {
-  min-width: 416px;
-}
+  min-width: 416px; }
 
 @media (max-width: 740px) {
   body {
-    padding: 0;
-  }
+    padding: 0; }
 
   .topo {
     margin: 0;
     padding: 0;
-    height: 0;
-  }
+    height: 0; }
 
   .mes {
-    display: none;
-  }
+    display: none; }
 
   #sidebar {
     margin: 5px;
@@ -25,31 +21,26 @@ body {
     display: block;
     width: auto;
     height: auto;
-    border-radius: 15px;
-  }
+    border-radius: 15px; }
 
   #usuario {
     float: right;
     position: absolute;
     top: 16px;
-    right: 15px;
-  }
+    right: 15px; }
 
   .sidebar-btn-add, .sidebar-menu {
-    display: none;
-  }
+    display: none; }
 
   .content {
-    margin-left: auto;
-  }
+    margin-left: auto; }
 
   .sibebar-logo {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    margin-top: 0px;
-  }
+    margin-top: 0px; }
 
   .navbar-menu {
     display: block;
@@ -57,33 +48,24 @@ body {
     padding: 0;
     margin-left: auto;
     margin-top: 15px;
-    display: block !important;
-  }
-  .navbar-menu li {
-    display: inline;
-    padding: 5px 10px 0 5px;
-  }
-  .navbar-menu li a {
-    text-decoration: none;
-    font-weight: bold;
-    color: red;
-  }
-  .navbar-menu li a:hover {
-    color: rgb(189, 7, 7);
-  }
+    display: block !important; }
+    .navbar-menu li {
+      display: inline;
+      padding: 5px 10px 0 5px; }
+    .navbar-menu li a {
+      text-decoration: none;
+      font-weight: bold;
+      color: red; }
+      .navbar-menu li a:hover {
+        color: #bd0707; }
 
   .card-lg.balance {
-    width: 97.7%;
-  }
+    width: 97.7%; }
 
   .menu-user {
-    top: 75px;
-  }
-}
+    top: 75px; } }
 @media (min-width: 741px) and (max-width: 1032px) {
   .card-lg.balance {
-    width: 97.7%;
-  }
-}
+    width: 97.7%; } }
 
 /*# sourceMappingURL=media-query.css.map */

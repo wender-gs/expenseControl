@@ -1,8 +1,7 @@
 .carteira-box-receita {
   display: flex;
   flex-direction: column;
-  width: auto;
-}
+  width: auto; }
 
 .carteira-box-receita .carteira-receita {
   background-color: #fff;
@@ -11,15 +10,14 @@
   width: 102%;
   opacity: 0;
   box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.5), 3px 3px 3px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s;
+  transition: all .4s;
   border-radius: 25px;
   overflow: hidden;
   position: absolute;
   z-index: 1001;
   bottom: 125px;
   left: -4px;
-  order: 1;
-}
+  order: 1; }
 
 .selected-carteira-receita {
   background-color: #FFF;
@@ -27,20 +25,17 @@
   color: #000000;
   margin-top: 10px;
   position: relative;
-  order: 2;
-}
-.selected-carteira-receita:hover {
-  border-bottom: 1px solid #4CAF50;
-}
-.selected-carteira-receita i {
-  position: relative;
-  font-size: 14px;
-  left: 0px;
-  top: 17px !important;
-}
+  order: 2; }
+  .selected-carteira-receita:hover {
+    border-bottom: 1px solid #4CAF50; }
+  .selected-carteira-receita i {
+    position: relative;
+    font-size: 14px;
+    left: 0px;
+    top: 17px !important; }
 
 .selected-carteira-receita::after {
-  content: "";
+  content: '';
   background: url("../img/arrow-down.png");
   background-size: 18px;
   background-repeat: no-repeat;
@@ -49,39 +44,31 @@
   width: 32px;
   right: 10px;
   top: 18px;
-  transition: all 0.4s;
-}
+  transition: all 0.4s; }
 
 .carteira-box-receita .carteira-receita.active-carteira-receita {
   max-height: 150px;
-  opacity: 1;
-}
+  opacity: 1; }
 
 .carteira-box-receita .carteira-receita.active-carteira-receita + .selected-carteira-receita::after {
   transform: rotateX(180deg);
-  top: -18px;
-}
+  top: -18px; }
 
 .selected-carteira-receita {
   padding: 12px 24px;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .carteira-box-receita .forma-receita {
-  border-radius: 15px;
-}
-.carteira-box-receita .forma-receita:hover {
-  background-color: #b7b7b7;
-}
+  border-radius: 15px; }
+  .carteira-box-receita .forma-receita:hover {
+    background-color: #b7b7b7; }
 
 .carteira-box-receita label {
   cursor: pointer;
   padding: 12px 24px;
-  width: 100%;
-}
+  width: 100%; }
 
 .carteira-box-receita .carteira-receita .forma-receita .radio {
-  display: none;
-}
+  display: none; }
 
 /*# sourceMappingURL=wallet.css.map */

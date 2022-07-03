@@ -1,10 +1,8 @@
 #modal-receita .container-box .selected-option:hover {
-  border-bottom: 1px solid #4CAF50;
-}
+  border-bottom: 1px solid #4CAF50; }
 
 #categoria-receita {
   position: absolute;
-  top: 190px;
-}
+  top: 190px; }
 
 /*# sourceMappingURL=receita.css.map */

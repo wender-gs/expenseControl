@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["../scss/despesa.scss"],"names":[],"mappings":"AACI;EACI;;;AAIR;EACI;EACA;;;AAGJ;EACI;EACA","file":"despesa.css"}
+{
+"version": 3,
+"mappings": "AACI,4CAAO;EACH,aAAa,EAAE,mBAAmB;;AAI1C,iBAAiB;EACb,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,KAAK;;AAGd,SAAS;EACL,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,KAAK",
+"sources": ["../scss/despesa.scss"],
+"names": [],
+"file": "despesa.css"
+}

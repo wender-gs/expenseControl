@@ -1,8 +1,7 @@
 .container-box {
   display: flex;
   width: auto;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .container-box .container-options {
   background-color: #FFF;
@@ -18,8 +17,7 @@
   z-index: 1001;
   top: 85px;
   left: -4px;
-  order: 1;
-}
+  order: 1; }
 
 .selected-option {
   background-color: #FFF;
@@ -28,17 +26,15 @@
   margin-top: 10px;
   position: relative;
   width: 100%;
-  order: 2;
-}
-.selected-option i {
-  position: relative;
-  font-size: 14px;
-  left: 0px;
-  top: 20px !important;
-}
+  order: 2; }
+  .selected-option i {
+    position: relative;
+    font-size: 14px;
+    left: 0px;
+    top: 20px !important; }
 
 .selected-option::after {
-  content: "";
+  content: '';
   background: url("../img/arrow-down.png");
   background-size: 18px;
   background-repeat: no-repeat;
@@ -47,64 +43,52 @@
   width: 32px;
   right: 10px;
   top: 18px;
-  transition: all 0.4s;
-}
+  transition: all 0.4s; }
 
 .container-box .container-options.active-options {
   max-height: 250px;
   opacity: 1;
-  overflow-y: scroll;
-}
+  overflow-y: scroll; }
 
 .container-box .container-options.active-options + .selected-option::after {
   transform: rotateX(180deg);
-  top: -18px;
-}
+  top: -18px; }
 
 .container-box .container-options::-webkit-scrollbar {
   width: 8px;
   background-color: #0d141f;
-  border-radius: 0 25px 25px 0;
-}
+  border-radius: 0 25px 25px 0; }
 
 .container-box .container-options::-webkit-scrollbar-thumb {
   background-color: #525861;
-  border-radius: 0 25px 25px 0;
-}
+  border-radius: 0 25px 25px 0; }
 
 .selected-option {
   padding: 12px 24px;
   margin-left: 0 !important;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .container-options .option {
   border-radius: 15px;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .container-box .option:hover {
-  background-color: #b7b7b7;
-}
+  background-color: #b7b7b7; }
 
 .container-box label {
   cursor: pointer;
   padding: 12px 24px;
-  width: 100%;
-}
+  width: 100%; }
 
 .container-box .option .radio {
-  display: none;
-}
+  display: none; }
 
 .container-options.edit-wallet {
   position: absolute;
-  top: 320px;
-}
+  top: 320px; }
 
 .container-options.cat-edit {
   position: absolute;
-  top: 190px;
-}
+  top: 190px; }
 
 /*# sourceMappingURL=seletores.css.map */

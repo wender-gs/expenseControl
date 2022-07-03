@@ -6,12 +6,11 @@
   height: 15px;
   background-color: #9d9d9d;
   border-radius: 25px;
-  text-align: right;
-}
+  text-align: right; }
 
 /* After slide changes */
 .toggle::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 20px;
   height: 20px;
@@ -20,51 +19,41 @@
   top: -2.5px;
   left: -1px;
   transition: all 0.5s;
-  box-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.5);
-}
+  box-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.5); }
 
 /* Checkbox checked effect */
 .checkbox:checked + .toggle::after {
   left: 23px;
-  transition: all 0.5s;
-}
+  transition: all .5s; }
 
 /* Checkbox checked toggle label bg color */
 .checkbox:checked + .toggle {
-  background-color: #e89292;
-}
+  background-color: #e89292; }
 
 .checkbox:checked + .toggle::after {
-  background-color: #d32f2f;
-}
+  background-color: #d32f2f; }
 
 .receita .checkbox:checked + .toggle {
-  background-color: #68db6c;
-}
+  background-color: #68db6c; }
 
 .receita-check .checkbox:checked + .toggle {
-  background-color: #91e594;
-}
+  background-color: #91e594; }
 
 .receita-check .checkbox:checked + .toggle::after {
-  background-color: #4CAF50;
-}
+  background-color: #4CAF50; }
 
 /* Checkbox vanished */
 .checkbox {
-  display: none;
-}
+  display: none; }
 
 .text-switch {
   display: block;
   padding-left: 25px;
   color: #b5b5b5;
-  font-size: 16px;
-}
+  font-size: 16px; }
 
 .check-icon {
   position: relative !important;
-  top: 25px !important;
-}
+  top: 25px !important; }
 
 /*# sourceMappingURL=css-checkbox.css.map */
